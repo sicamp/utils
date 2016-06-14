@@ -4,7 +4,7 @@
 from_address = 'mail@sicamp.ru'
 
 # Как зовут отправителя
-from_name = 'Летний компьютерный лагерь'
+from_name = 'ЛКЛ'
 
 # Тема письма
 subject = 'ЛКЛ 2016'

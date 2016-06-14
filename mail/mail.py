@@ -5,6 +5,7 @@ from os import system
 import csv
 import time
 import tempfile
+import base64
 
 import settings
 
@@ -19,6 +20,8 @@ def personalize(text, user):
 def getEmail(user):
     return user[settings.email_field]
 
+def encodeUTF(s):
+    return base64.b64encode(s.encode("utf8")).decode("ascii")
 # Отправляет пользователю письмо
 def sendEmail(user):
     email = getEmail(user)
@@ -29,13 +32,13 @@ def sendEmail(user):
     mail_file.write(bytes(personalize(text, user), 'UTF-8'))
     mail_file.seek(0)
     print('Write to file ' + mail_file.name)
-    print(system((
+    print(system(
         "mail"
         " -a \"Content-Type: text/html; charset=UTF-8\""
-        " -a \"From:=?utf-8?B?" + settings.from_name + "?= <" + settings.from_address + ">\""
-        " -s \"=?utf-8?B?" + settings.subject + "?=\" " + email + " "
+        " -a \"From:=?utf-8?B?" + encodeUTF(settings.from_name) + "?= <" + settings.from_address + ">\""
+        " -s \"=?utf-8?B?" + encodeUTF(settings.subject) + "?=\" " + email + " "
         " < " + mail_file.name
-    )))
+    ))
 
 def readTable(fname):
     lines = csv.reader(open(fname, newline=''))

@@ -7,7 +7,7 @@ from_address = 'mail@sicamp.ru'
 from_name = 'ЛКЛ'
 
 # Тема письма
-subject = 'ЛКЛ 2016'
+subject = 'Вы зачислены в ЛКЛ 2016!'
 
 # В каком поле в csv лежит адрес ученика
 email_field = 22

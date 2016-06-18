@@ -25,7 +25,7 @@ def encodeUTF(s):
 # Отправляет пользователю письмо
 def sendEmail(user):
     email = getEmail(user)
-    print(user)
+    print([(name, user[settings.placeholders[name]]) for name in settings.placeholders])
     print(email)
 
     mail_file = tempfile.NamedTemporaryFile(suffix='.html')
